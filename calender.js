@@ -57,14 +57,14 @@ var mobile_calender = {
 
         $(".chose_month_item").click(function () {
             mobile_calender.chose_month = $(this).data("month");
+            mobile_calender.chose_year = $("#_year").val();
             $(".chose_month_btn").data("month", mobile_calender.chose_month);
             $(".day").empty();
             $("#mid").css("display", "none");
             $('.footer_month').hide().animate({'bottom': '-177px'}, 300);
-            mobile_calender.chose_week = mobile_calender.weekNumber(mobile_calender.cur_year, mobile_calender.chose_month, 1);
-            MonthDay = mobile_calender.getMDay(mobile_calender.cur_year, mobile_calender.chose_month);
-            mobile_calender.appendDay(mobile_calender.chose_week, MonthDay, mobile_calender.cur_year, mobile_calender.chose_month);
-
+            mobile_calender.chose_week = mobile_calender.weekNumber(mobile_calender.chose_year, mobile_calender.chose_month, 1);
+            MonthDay = mobile_calender.getMDay(mobile_calender.chose_year, mobile_calender.chose_month);
+            mobile_calender.appendDay(mobile_calender.chose_week, MonthDay, mobile_calender.chose_year, mobile_calender.chose_month);
         })
 
         $(".chose_year_certain_button").click(function () {
@@ -138,7 +138,7 @@ var mobile_calender = {
                 item_class += " holiday ";
             }
 
-            if (i < mobile_calender.cur_day && month == mobile_calender.cur_month) {
+            if (i < mobile_calender.cur_day && month == mobile_calender.cur_month && year == mobile_calender.cur_year) {
                 item_class += " day_grey ";
             }
 
